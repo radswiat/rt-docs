@@ -5,7 +5,7 @@ import React from 'react';
  * @desc
  * sadsada
  */
-class Test {
+class Test extends React {
 
   /**
    * propTypes
