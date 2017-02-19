@@ -10,6 +10,7 @@
         }
       }
     ],
+    "importKind": "value",
     "source": {
       "type": "StringLiteral",
       "extra": {
@@ -20,78 +21,96 @@
     }
   },
   {
-    "type": "ClassDeclaration",
-    "id": {
-      "type": "Identifier",
-      "name": "Test",
-      "leadingComments": null
-    },
-    "superClass": {
-      "type": "Identifier",
-      "name": "React"
-    },
-    "body": {
-      "type": "ClassBody",
-      "body": [
-        {
-          "type": "ClassMethod",
-          "computed": false,
-          "key": {
-            "type": "Identifier",
-            "name": "render",
-            "leadingComments": null
-          },
-          "static": false,
-          "kind": "method",
-          "id": null,
-          "generator": false,
-          "expression": false,
-          "async": false,
-          "params": [],
-          "body": {
-            "type": "BlockStatement",
-            "body": [
-              {
-                "type": "VariableDeclaration",
-                "declarations": [
-                  {
-                    "type": "VariableDeclarator",
-                    "id": {
-                      "type": "Identifier",
-                      "name": "s"
-                    },
-                    "init": {
-                      "type": "StringLiteral",
-                      "extra": {
-                        "rawValue": "dsaads",
-                        "raw": "'dsaads'"
-                      },
-                      "value": "dsaads"
-                    }
-                  }
-                ],
-                "kind": "var"
-              }
-            ],
-            "directives": []
-          },
-          "leadingComments": [
-            {
-              "type": "CommentBlock",
-              "value": "*\r\n   * Render react\r\n   * @protected\r\n   "
+    "type": "ExportDefaultDeclaration",
+    "declaration": {
+      "type": "ClassDeclaration",
+      "id": {
+        "type": "Identifier",
+        "name": "Test",
+        "leadingComments": null
+      },
+      "superClass": {
+        "type": "Identifier",
+        "name": "React"
+      },
+      "body": {
+        "type": "ClassBody",
+        "body": [
+          {
+            "type": "ClassMethod",
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "name": "render",
+              "leadingComments": null
             },
-            {
-              "type": "CommentBlock",
-              "value": "*\r\n   * Render react\r\n   * @protected\r\n   "
-            }
-          ]
-        }
-      ]
+            "static": false,
+            "kind": "method",
+            "id": null,
+            "generator": false,
+            "expression": false,
+            "async": false,
+            "params": [],
+            "body": {
+              "type": "BlockStatement",
+              "body": [
+                {
+                  "type": "ReturnStatement",
+                  "argument": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "MemberExpression",
+                      "object": {
+                        "type": "Identifier",
+                        "name": "React"
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "createElement"
+                      },
+                      "computed": false
+                    },
+                    "arguments": [
+                      {
+                        "type": "StringLiteral",
+                        "value": "div"
+                      },
+                      {
+                        "type": "NullLiteral"
+                      },
+                      {
+                        "type": "StringLiteral",
+                        "value": "asd"
+                      }
+                    ],
+                    "_prettyCall": true,
+                    "leadingComments": [],
+                    "innerComments": []
+                  }
+                }
+              ],
+              "directives": []
+            },
+            "leadingComments": [
+              {
+                "type": "CommentBlock",
+                "value": "*\n   * Render react\n   * @protected\n   "
+              },
+              {
+                "type": "CommentBlock",
+                "value": "*\n   * Render react\n   * @protected\n   "
+              }
+            ]
+          }
+        ]
+      },
+      "leadingComments": null,
+      "implements": null
     },
     "leadingComments": [
       {
         "type": "CommentBlock",
-        "value": "*\r\n * Test\r\n * @desc\r\n * sadsada\r\n "
+        "value": "*\n * Test\n * @desc\n * sadsada\n "
       }
     ]
   },

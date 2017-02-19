@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import { transform } from 'babel-core';
 import { loadFile, log } from './utils';
+import optimist from 'optimist';
 import AstTraverse from './ast-traverse/ast-traverse';
 
 class RtDocs {
@@ -9,16 +10,12 @@ class RtDocs {
     return new RtDocs();
   }
 
-  constructor() {
-
-  }
-
   async run() {
     await this.genBabel();
   }
 
   async genBabel() {
-    console.log(chalk.green('babel'));
+    console.log(chalk.green('------- babel -------'));
     // load up js file
     let file = await loadFile('example_code/demo.js');
 
@@ -29,11 +26,12 @@ class RtDocs {
     let parsed = transform(file, {
       babelrc: false,
       presets: [
-        "es2017",
-        "stage-0"
+        'es2017',
+        'react',
+        'stage-0'
       ],
       plugins: [
-        "transform-runtime"
+        'transform-runtime'
       ]
     });
 
@@ -43,7 +41,7 @@ class RtDocs {
     let unusedProp = ['loc', 'start', 'end', 'tokens', 'trailingComments'];
     let ast = (() => {
       let clearFunc = (obj) => {
-        for(var prop in obj) {
+        for (let prop in obj) {
           if (unusedProp.indexOf(prop) >= 0) {
             delete obj[prop];
           } else {
@@ -61,12 +59,13 @@ class RtDocs {
     // Development:
     // store ast into the file
     // it makes reading a json much easier
-    //log(ast.program.body);
+    if (optimist.argv.log) {
+      log(ast.program.body);
+    }
 
     // we don't need anything but body
     let body = ast.program.body;
-    let at = new AstTraverse(body);
-    at.traverse();
+    new AstTraverse(body);
   }
 
 }

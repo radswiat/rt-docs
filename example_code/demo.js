@@ -5,7 +5,7 @@ import React from 'react';
  * @desc
  * sadsada
  */
-class Test extends React {
+export default class Test extends React {
 
   /**
    * propTypes
@@ -20,7 +20,9 @@ class Test extends React {
    * @protected
    */
   render() {
-    var s = 'dsaads';
+    return (
+      <div>asd</div>
+    );
   }
 
 }
