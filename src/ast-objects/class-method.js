@@ -1,7 +1,22 @@
 export default class ClassMethod {
 
+  static supportedTags = ['desc', 'alias'];
+
   constructor(data) {
     this.data = data;
+    this.parseComments();
+  }
+
+  parseComments() {
+    let comments = this.data.leadingComments[0].value;
+
+    // lets clean a comment block
+    comments = comments.replace(/\*/g, '');
+    console.log(comments);
+
+    // let r = comments.match(/((\@)([A-Za-z]){0,})((.(.|[\r\n])(?!(\@))){0,})/g);
+    let r = comments.match(/((\@)([A-Za-z]){0,})(((.|[\r\n])(?!(\@))){0,})/g);
+    console.log(r);
   }
 
   /**

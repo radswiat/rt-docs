@@ -1,4 +1,5 @@
 import { camelToDash } from '../utils';
+import { log } from '../utils';
 import chalk from 'chalk';
 
 export default class AstTraverse {
@@ -9,11 +10,14 @@ export default class AstTraverse {
    */
   constructor(body) {
     this.body = body;
-    this.traverse(body);
+    let done = this.traverse(body);
+    console.log(chalk.green.bold('---------------'));
+    log(done);
   }
 
   traverse(node) {
-    node.forEach((child) => {
+    let traverseNode = [];
+    node.forEach((child, index) => {
       let obj;
       try {
         obj = new (require(`../ast-objects/${camelToDash(child.type)}`).default)(child);
@@ -22,12 +26,16 @@ export default class AstTraverse {
           `ast-object does not exists in: src/ast-objects/${camelToDash(child.type)}`
         ));
       }
-      console.log(child.type);
-      let subChild = obj.getChildNodes();
-      if (subChild && subChild.length) {
-        this.traverse(subChild);
+      if (typeof obj.data !== 'undefined') {
+        traverseNode[index] = obj;
+        let subChild = obj.getChildNodes();
+        if (subChild && subChild.length) {
+          let s = this.traverse(subChild);
+          obj.insertChildNode(s);
+        }
       }
     });
+    return traverseNode;
   }
 
 }

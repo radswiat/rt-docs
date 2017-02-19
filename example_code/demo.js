@@ -18,6 +18,8 @@ export default class Test extends React {
   /**
    * Render react
    * @protected
+   * @desc
+   * This is some description with <b>html tag support</b>
    */
   render() {
     return (

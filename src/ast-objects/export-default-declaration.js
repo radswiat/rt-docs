@@ -4,6 +4,10 @@ export default class ExportDefaultDeclaration {
     this.data = data;
   }
 
+  insertChildNode(node) {
+    this.data.declaration = node;
+  }
+
   /**
    * Return child nodes to ast-traverse
    * return has to ba an array!

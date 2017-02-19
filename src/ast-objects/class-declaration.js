@@ -4,6 +4,10 @@ export default class ClassDeclaration {
     this.data = data;
   }
 
+  insertChildNode(node) {
+    this.data.body.body = node;
+  }
+
   getChildNodes() {
     // class declaration can have child nodes
     // first child is classBody
