@@ -1,4 +1,5 @@
 import path from 'path';
+const ExtendedDefinePlugin = require('extended-define-webpack-plugin');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 
 /**
@@ -22,7 +23,7 @@ let babelrc = {
   ]
 };
 
-export default function compile(tplPath, outPath) {
+export default function compile(docsData, tplPath, outPath) {
   return {
     entry: path.resolve(tplPath, 'main.jsx'),
 
@@ -44,6 +45,9 @@ export default function compile(tplPath, outPath) {
     },
 
     plugins: [
+      new ExtendedDefinePlugin({
+        __DOCS: docsData
+      }),
       new StaticSiteGeneratorPlugin('bundle.js', [
         '/'
       ], {

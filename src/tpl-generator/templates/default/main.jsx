@@ -4,6 +4,8 @@ import { createMemoryHistory } from 'history';
 import { RouterContext, match } from 'react-router';
 import routes from './routes.jsx';
 
+console.log(__DOCS);
+
 // Exported static site renderer:
 export default function render(locals, callback) {
   const history = createMemoryHistory();

@@ -27489,6 +27489,8 @@ var _routes2 = _interopRequireDefault(_routes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+console.log(undefined);
+
 // Exported static site renderer:
 function render(locals, callback) {
   var history = (0, _history.createMemoryHistory)();

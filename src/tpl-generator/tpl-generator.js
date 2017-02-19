@@ -4,22 +4,32 @@ import gutil from 'gutil';
 import path from 'path';
 import webpackConfig from './webpack/webpack.conf';
 
-console.log(chalk.green('tpl-generator'));
+export default class TplGenerator {
 
-let compiler = webpack(
-  webpackConfig(
-    path.resolve(
-      process.cwd(), './src/tpl-generator/templates/default/'
-    ),
-    path.resolve(
-      process.cwd(), './output/'
-    )
-  )
-);
+  constructor(docs) {
+    console.log(chalk.green('tpl-generator'));
+    this.docs = docs;
+  }
 
-compiler.run((err, stats) => {
-  gutil.log('[webpack:build]', stats.toString({
-    chunks: false, // Makes the build much quieter
-    colors: true
-  }));
-});
+  compile() {
+    webpack(
+      webpackConfig(
+        this.docs,
+        path.resolve(
+          process.cwd(), './src/tpl-generator/templates/default/'
+        ),
+        path.resolve(
+          process.cwd(), './output/'
+        )
+      )
+    ).run((err, stats) => {
+      gutil.log('[webpack:build]', stats.toString({
+        chunks: false, // Makes the build much quieter
+        colors: true
+      }));
+    });
+  }
+}
+
+let tg = new TplGenerator();
+tg.compile();
