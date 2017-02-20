@@ -1,11 +1,15 @@
 export default class ExportDefaultDeclaration {
 
   constructor(data) {
-    this.data = data;
+    this.type = 'export-default';
+    // export has a comment, that should belong to child element instead,
+    // lets just pass it over into the child
+    data.declaration.leadingComments = data.leadingComments;
+    this.childes = [data.declaration];
   }
 
   insertChildNode(node) {
-    this.data.declaration = node;
+    this.childes = node;
   }
 
   /**
@@ -16,7 +20,7 @@ export default class ExportDefaultDeclaration {
   getChildNodes() {
     // return sub node from data.declaration
     // and as its not array, we have to return array as this is expected by traverse
-    return [this.data.declaration];
+    return this.childes;
   }
 
 }

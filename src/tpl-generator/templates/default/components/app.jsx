@@ -1,4 +1,11 @@
 import React from 'react';
+import Block from './comment-blocks/block.jsx';
+
+function objToArr(obj) {
+  return Object.keys(obj).map((key) => { return obj[key]; });
+}
+
+const docs = objToArr(APP_DATA.docs);
 
 /**
  * React Main app
@@ -17,9 +24,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="layout-column flex">
-        <div className="layout-row flex stretch">
-          asdasd
-        </div>
+        <Block nodes={APP_DATA.docs} />
       </div>
     );
   }

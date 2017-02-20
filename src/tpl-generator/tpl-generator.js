@@ -30,6 +30,6 @@ export default class TplGenerator {
     });
   }
 }
-
-let tg = new TplGenerator();
-tg.compile();
+//
+// let tg = new TplGenerator();
+// tg.compile();

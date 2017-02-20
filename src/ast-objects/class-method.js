@@ -1,22 +1,17 @@
-export default class ClassMethod {
+import AstObject from './ast-object';
+
+export default class ClassMethod extends AstObject {
 
   static supportedTags = ['desc', 'alias'];
 
   constructor(data) {
-    this.data = data;
-    this.parseComments();
-  }
-
-  parseComments() {
-    let comments = this.data.leadingComments[0].value;
-
-    // lets clean a comment block
-    comments = comments.replace(/\*/g, '');
-    console.log(comments);
-
-    // let r = comments.match(/((\@)([A-Za-z]){0,})((.(.|[\r\n])(?!(\@))){0,})/g);
-    let r = comments.match(/((\@)([A-Za-z]){0,})(((.|[\r\n])(?!(\@))){0,})/g);
-    console.log(r);
+    super();
+    this.type = 'class-method';
+    this.name = data.key.name;
+    this.static = data.static;
+    this.kind = data.kind;
+    this.params = data.params;
+    this.comments = this.parseComments(data.leadingComments[0].value);
   }
 
   /**

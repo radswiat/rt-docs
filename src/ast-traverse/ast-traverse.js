@@ -1,5 +1,6 @@
 import { camelToDash } from '../utils';
 import { log } from '../utils';
+import TplGenerator from '../tpl-generator/tpl-generator';
 import chalk from 'chalk';
 
 export default class AstTraverse {
@@ -10,9 +11,11 @@ export default class AstTraverse {
    */
   constructor(body) {
     this.body = body;
-    let done = this.traverse(body);
+    let astDocsData = this.traverse(body);
     console.log(chalk.green.bold('---------------'));
-    log(done);
+    log(astDocsData);
+    let tg = new TplGenerator(astDocsData);
+    tg.compile();
   }
 
   traverse(node) {
@@ -26,7 +29,7 @@ export default class AstTraverse {
           `ast-object does not exists in: src/ast-objects/${camelToDash(child.type)}`
         ));
       }
-      if (typeof obj.data !== 'undefined') {
+      if (typeof obj !== 'undefined') {
         traverseNode[index] = obj;
         let subChild = obj.getChildNodes();
         if (subChild && subChild.length) {

@@ -1,11 +1,20 @@
-export default class ClassDeclaration {
+import AstObject from './ast-object';
+
+export default class ClassDeclaration extends AstObject {
 
   constructor(data) {
-    this.data = data;
+    super();
+    this.type = 'class';
+    this.name = data.id.name;
+    this.extends = data.superClass.name;
+    this.childes = data.body.body;
+    this.comments = this.parseComments(data.leadingComments[0].value);
+    // if we want to store oryginal data
+    // this.data = data;
   }
 
   insertChildNode(node) {
-    this.data.body.body = node;
+    this.childes = node;
   }
 
   getChildNodes() {
@@ -13,7 +22,7 @@ export default class ClassDeclaration {
     // first child is classBody
     // we don't need it, so we gonna return a body from classBody
     // which is as follow ( body.body )
-    return this.data.body.body;
+    return this.childes;
   }
 
 }

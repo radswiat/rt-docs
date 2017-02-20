@@ -1,4 +1,5 @@
 import path from 'path';
+import webpack from 'webpack';
 const ExtendedDefinePlugin = require('extended-define-webpack-plugin');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 
@@ -46,7 +47,9 @@ export default function compile(docsData, tplPath, outPath) {
 
     plugins: [
       new ExtendedDefinePlugin({
-        __DOCS: docsData
+        APP_DATA: {
+          docs: docsData
+        }
       }),
       new StaticSiteGeneratorPlugin('bundle.js', [
         '/'
