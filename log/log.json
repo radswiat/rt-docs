@@ -1,1 +1,0 @@
-[{},{"type":"export-default","childes":[{"type":"class","name":"Test","extends":"React","childes":[{"type":"class-method","name":"render","static":false,"kind":"method","params":[],"comments":[{"type":"protected","content":" "},{"type":"desc","content":"This is some description with <b>html tag support</b>"}]}],"comments":[{"type":"desc","content":"sadsada"}]}]},{}]
