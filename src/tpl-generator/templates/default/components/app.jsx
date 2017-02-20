@@ -16,15 +16,27 @@ const docs = objToArr(APP_DATA.docs);
  */
 export default class App extends React.Component {
 
+  static contextTypes = {
+    router: React.PropTypes.func.isRequired
+  };
+
   /**
    * Render
    * @protected
    * @return {ReactElement} markup
    */
   render() {
+
+    let currentPageDocs = docs.filter((ast) => {
+      if (ast.route === this.context.router.location.pathname) {
+        return true;
+      }
+      return false;
+    })[0];
+
     return (
       <div className="layout-column flex">
-        <Block nodes={APP_DATA.docs} />
+        <Block nodes={currentPageDocs.ast} />
       </div>
     );
   }

@@ -25,6 +25,18 @@ let babelrc = {
 };
 
 export default function compile(docsData, tplPath, outPath) {
+
+  /**
+   * Create possible routes for react
+   * - static router will render by this pattern
+   * TODO: make it nicer
+   */
+  let routes = (() => {
+    return docsData.map((data) => {
+      return data.route;
+    });
+  })();
+
   return {
     entry: path.resolve(tplPath, 'main.jsx'),
 
@@ -41,7 +53,10 @@ export default function compile(docsData, tplPath, outPath) {
           loader: 'babel-loader',
           query: babelrc
         },
-        { test: /\.ejs$/, loader: 'ejs-loader?variable=data' },
+        {
+          test: /\.ejs$/,
+          loader: 'ejs-loader?variable=data'
+        }
       ]
     },
 
@@ -51,9 +66,7 @@ export default function compile(docsData, tplPath, outPath) {
           docs: docsData
         }
       }),
-      new StaticSiteGeneratorPlugin('bundle.js', [
-        '/'
-      ], {
+      new StaticSiteGeneratorPlugin('bundle.js', routes, {
         title: 'Docs'
       })
     ]

@@ -1,12 +1,12 @@
+import React from 'react';
+
 /**
- * Block comment test
+ * Test
+ * @desc
+ * sadsada
  */
-class Test{
+export default class Test extends React {
 
-    /**
-     * Render
-     */
-    redner() {
 
-    }
 }
+

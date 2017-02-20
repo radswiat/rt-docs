@@ -1,13 +1,12 @@
 import chalk from 'chalk';
 import webpack from 'webpack';
-import gutil from 'gutil';
 import path from 'path';
+import gutil from 'gutil';
 import webpackConfig from './webpack/webpack.conf';
 
 export default class TplGenerator {
 
   constructor(docs) {
-    console.log(chalk.green('tpl-generator'));
     this.docs = docs;
   }
 
@@ -23,6 +22,10 @@ export default class TplGenerator {
         )
       )
     ).run((err, stats) => {
+      if (err) {
+        console.log(`${chalk.yellow.bold('> [rtdoc] ')}${chalk.red.bold('webpack failed')}`);
+        console.log(err);
+      }
       gutil.log('[webpack:build]', stats.toString({
         chunks: false, // Makes the build much quieter
         colors: true

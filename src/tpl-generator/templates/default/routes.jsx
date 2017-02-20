@@ -4,6 +4,6 @@ import { Router, Route, browserHistory } from 'react-router';
 
 export default (
     <Router history={browserHistory}>
-      <Route path="/" component={App} />
+      <Route path="*" component={App} />
     </Router>
 );
