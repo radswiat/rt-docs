@@ -1,5 +1,5 @@
 import React from 'react';
-import Block from './block.jsx';
+import Block from '../block/block.jsx';
 
 export default class ClassMethod extends React.Component {
 

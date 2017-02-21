@@ -1,8 +1,8 @@
-body{
-  background: red;
+:global {
+  @import './core/material';
+
+  body{
+    background: red;
+  }
 }
 
-.container {
-  width: 100%;
-  color: red;
-}

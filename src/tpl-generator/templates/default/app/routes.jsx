@@ -1,5 +1,5 @@
 import React from 'react';
-import App from './components/app.jsx';
+import App from './components/app/app.jsx';
 import { Router, Route, browserHistory } from 'react-router';
 
 export default (

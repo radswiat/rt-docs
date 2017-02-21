@@ -18,13 +18,14 @@ let babelrc = {
   plugins: [
     'transform-runtime',
     'jsx-control-statements',
+    'transform-decorators-legacy',
     'transform-react-constant-elements',
     'transform-react-inline-elements',
     'transform-react-remove-prop-types'
   ]
 };
 
-export default function compile(docsData, tplPath, outPath) {
+export default function compile(astData, tplPath, outPath) {
 
   /**
    * Create possible routes for react
@@ -32,7 +33,7 @@ export default function compile(docsData, tplPath, outPath) {
    * TODO: make it nicer
    */
   let routes = (() => {
-    return docsData.map((data) => {
+    return astData.map((data) => {
       return data.route;
     });
   })();
@@ -73,7 +74,7 @@ export default function compile(docsData, tplPath, outPath) {
     plugins: [
       new ExtendedDefinePlugin({
         APP_DATA: {
-          docs: docsData
+          astData
         }
       }),
       new ExtractTextPlugin('styles.css'),

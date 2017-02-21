@@ -1,7 +1,7 @@
 import React from 'react';
-import ClassMethod from './class-method.jsx';
-import Class from './class.jsx';
-import ExportDefault from './export-default.jsx';
+import ClassMethod from '../comment-blocks/class-method.jsx';
+import Class from '../comment-blocks/class.jsx';
+import ExportDefault from '../comment-blocks/export-default.jsx';
 
 function objToArr(obj) {
   return Object.keys(obj).map((key) => { return obj[key]; });
