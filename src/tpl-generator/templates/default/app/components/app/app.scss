@@ -1,4 +1,18 @@
+.header-container {
+  max-height: 64px;
+  min-height: 64px;
+  background: #37474F;
+  box-shadow: -2px 6px 13px 1px #b1b1b1;
+  position: relative;
+  color: white;
+}
+
 .navigation-container {
   max-width: 200px;
   min-width: 200px;
+  background: #EEEEEE;
+}
+
+.content-container {
+  background: white;
 }
