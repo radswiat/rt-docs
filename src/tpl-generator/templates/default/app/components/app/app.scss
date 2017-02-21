@@ -1,3 +1,9 @@
+.app {
+  flex: 1;
+  display: flex;
+  align-self: stretch;
+}
+
 .header-container {
   max-height: 64px;
   min-height: 64px;
