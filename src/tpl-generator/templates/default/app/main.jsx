@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { createMemoryHistory } from 'history';
 import { RouterContext, match } from 'react-router';
 import routes from './routes.jsx';
+import '../assets/scss/main.scss';
 
 // Exported static site renderer:
 export default function render(locals, callback) {

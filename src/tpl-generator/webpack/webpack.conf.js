@@ -1,7 +1,7 @@
 import path from 'path';
-import webpack from 'webpack';
 const ExtendedDefinePlugin = require('extended-define-webpack-plugin');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 /**
  * Babel config for:
@@ -38,7 +38,7 @@ export default function compile(docsData, tplPath, outPath) {
   })();
 
   return {
-    entry: path.resolve(tplPath, 'main.jsx'),
+    entry: path.resolve(tplPath, 'app/main.jsx'),
 
     output: {
       filename: 'bundle.js',
@@ -54,8 +54,18 @@ export default function compile(docsData, tplPath, outPath) {
           query: babelrc
         },
         {
-          test: /\.ejs$/,
-          loader: 'ejs-loader?variable=data'
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract({
+            fallback: 'style-loader?sourceMap',
+            use: [
+              'css-loader?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]',
+              'sass-loader?sourceMap'
+            ]
+          })
+        },
+        {
+          test: /\.css$/,
+          loader: 'style-loader!css'
         }
       ]
     },
@@ -66,6 +76,7 @@ export default function compile(docsData, tplPath, outPath) {
           docs: docsData
         }
       }),
+      new ExtractTextPlugin('styles.css'),
       new StaticSiteGeneratorPlugin('bundle.js', routes, {
         title: 'Docs'
       })
