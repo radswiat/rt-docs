@@ -76,6 +76,8 @@ class RtDocs {
       ]
     });
 
+    // log(parsed);
+
     // Development:
     // there is a lot of data we don't need to use from AST
     // for development reasons we gonna remove those
@@ -95,6 +97,10 @@ class RtDocs {
       };
       return clearFunc(parsed.ast);
     })();
+
+    // lets add comments into ast
+    // TODO: doesnt work, how to pass it ?
+    // ast.comments = parsed.comments;
     return ast;
   }
 

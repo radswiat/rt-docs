@@ -5,14 +5,17 @@ import React from 'react';
  * @desc
  * sadsada
  */
-export default class Test extends React {
+export default class Test2 extends React {
 
   /**
    * propTypes
    * @property {children} ReactElement
    */
   static propTypes = {
-    children: React.PropTypes.element
+    // children test loooooong2
+    children: React.PropTypes.element,
+    // nodes looooong2
+    nodes: React.PropTypes.string
   };
 
   /**
@@ -23,7 +26,7 @@ export default class Test extends React {
    */
   render() {
     return (
-      <div>asd</div>
+      <div>console.log{Test.propTypes}</div>
     );
   }
 
